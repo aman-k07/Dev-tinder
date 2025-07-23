@@ -2,6 +2,91 @@ const express=require("express");
 
 const app=express();
 
+//Lets write clean code for the routes
+const { adminAuth,userAuth } = require("./middlewares/auth");
+
+// app.use("/admin",adminAuth);
+// app.use("/user",userAuth);
+//Either this way or
+app.use("/admin",adminAuth);
+
+app.post("/user/login",(req,res)=>{    //here auth not reqd. bcz its a login route
+    res.send("User Logged In Successfully");
+});
+
+app.get("/user",userAuth,(req,res)=>{
+    res.send("User Data Sent");
+});
+
+
+app.get("/admin/getAllData",(req,res)=>{
+    res.send("All Data Sent");
+});
+
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("User Deleted");
+});
+app.get("/user",(req,res)=>{
+    res.send("All Data Sent");
+});
+
+/**
+// Handle Auth Middleware for all GET POST ,.... requests
+app.use("/admin",(req,res,next)=>{
+    console.log("Admin auth is getting checked!!");
+    // Logic of checking if the request is authorized or not
+    const token="xyz";
+    const isAdminAuthorized=token==="xyz";
+    if(!isAdminAuthorized){
+        res.status(401).send("Unauthorized request");
+    }else{
+        next(); //if the user is authorized then we call next() to go to the next route handler
+    }
+});
+
+app.get("/admin/getAllData",(req,res)=>{
+    res.send("All Data Sent");
+});
+
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("User Deleted");
+});
+ */
+
+/** 
+app.get("/admin/getAllData",(req,res)=>{
+    // Logic of checking if the request is authorized or not
+    const token="xyz";
+    const isAdminAuthorized=token==="xyz";
+    if(isAdminAuthorized){
+        res.send("All Data Sent");
+    }else{
+        res.status(401).send("Unauthorized request");
+    }
+});
+
+app.get("/admin/deleteUser",(req,res)=>{
+    // Logic of checking if the request is authorized or not
+    //so we have to write it once again so that we can check if the user is authorized or not
+    //to avoid this we can use middleware
+});
+*/
+
+/**
+// we can also pass in like this
+app.get("/user",
+    (req,res,next)=>{
+       console.log("Handling the route user!!");
+       next();
+});
+app.get("/user",
+    (req,res)=>{
+        console.log("Handling the route user 2!!");
+        res.send("Response 2");
+});
+ */
+
+/** 
 app.use("/user",(req,res,next)=>{
     console.log("Handling the route user!!");
     //res.send("Response 1");
@@ -19,6 +104,7 @@ app.use("/user",(req,res,next)=>{
         //bcq it expects another route handler to send a response but we are not sending 
 }
 );
+*/
 
 /** 
 app.use("/user",(req,res,next)=>{
