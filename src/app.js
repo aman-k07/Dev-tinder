@@ -2,6 +2,40 @@ const express=require("express");
 
 const app=express();
 
+//ERROR HANDLING
+//using try catch block
+app.get("/getUserData",(req,res)=>{
+    try{
+        //Logic of DB call and get user data
+
+        throw new Error("fdsf"); //this will be caught by the error handler below
+        res.send("User Data Sent");
+    }catch(err){
+        res.status(500).send("Some error contact support team!");
+    }
+});
+
+// app.get("/getUserData",(req,res)=>{
+     //Logic of DB call and get user data
+
+//     throw new Error("jshviujhs"); //this will be caught by the error handler below
+
+//     res.send("User Data Sent");
+// });  
+
+//To handle unusual error we use this error handler
+//also called wild card error handling
+app.use("/",(err,req,res,next)=>{
+    // Log your error 
+    if(err){
+        res.status(500).send("Something went wrong!");
+    }
+});
+//doesnot matter either we put this on top as it doesnot throw any error
+//but if we write in both upper and lower then it matters
+
+
+/** 
 //Lets write clean code for the routes
 const { adminAuth,userAuth } = require("./middlewares/auth");
 
@@ -29,6 +63,7 @@ app.get("/admin/deleteUser",(req,res)=>{
 app.get("/user",(req,res)=>{
     res.send("All Data Sent");
 });
+*/
 
 /**
 // Handle Auth Middleware for all GET POST ,.... requests
