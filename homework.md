@@ -1,0 +1,26 @@
+# E3
+- Create a repository
+- Initialize the repository
+- node_modules, package.json, package-lock.json
+- Install express
+- Create a server
+- Listen to port 7777
+- Write request handlers for /test, /hello
+- Install nodemon and update scripts inside package.json
+- What are dependencies
+- What is the use of "-g" while npm install
+- Difference between Caret and Tilde (^ vs ~)
+# E4
+- Initialize git
+- .gitignore
+- Create a remote repo on github
+- push all code to remote origin
+- play with route and route extension  ex. /hello, / , /hello/2
+- order of the route matters a lot
+- install postman app and make a workspace/collection > test API call
+- Write logic to handle GET,POST,PATCH,DELETE API calls and test them on Postman
+- !-------------------------------------------------------------------------
+- Explore routing and use of ?, +,(),* in the routes
+- use of regex in the routes /a/, /.*fly$/
+- Reading the dynamic routes
+- Reading the query params in the routes
